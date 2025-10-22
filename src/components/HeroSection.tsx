@@ -11,7 +11,7 @@ const HeroSection = () => {
           <div>
             <h1 className="text-5xl font-bold mb-6">
               Trouvez les meilleures offres de transport avec{" "}
-              <span className="text-primary">logidoo</span>
+              <span className="text-primary">Teranga Logix</span>
             </h1>
             
             <div className="bg-card p-6 rounded-lg shadow-lg space-y-4">

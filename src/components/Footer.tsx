@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">logidoo</h3>
+            <h3 className="font-bold text-lg mb-4">Teranga Logix</h3>
             <p className="text-sm opacity-90">
               Votre partenaire de confiance pour tous vos besoins de transport et logistique.
             </p>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Clock, Package, LogOut } from "lucide-react";
@@ -97,7 +98,9 @@ const ClientDashboard = ({ userName, onLogout }: ClientDashboardProps) => {
                 <p className="text-muted-foreground mb-6">
                   Vous n'avez pas encore de demandes de devis.
                 </p>
-                <Button>Faire une demande</Button>
+                <Button asChild>
+                  <Link to="/demande-devis">Faire une demande</Link>
+                </Button>
               </div>
             </div>
           )}
