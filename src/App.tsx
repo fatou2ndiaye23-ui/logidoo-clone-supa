@@ -14,6 +14,11 @@ import Entreprise from "./pages/Entreprise";
 import PortailDeveloppeur from "./pages/PortailDeveloppeur";
 import ServiceCommercial from "./pages/ServiceCommercial";
 import NotFound from "./pages/NotFound";
+import UserManagement from "./pages/admin/UserManagement";
+import QuoteManagement from "./pages/admin/QuoteManagement";
+import BugManagement from "./pages/developer/BugManagement";
+import EmailManagement from "./pages/developer/EmailManagement";
+import SystemErrors from "./pages/developer/SystemErrors";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +39,11 @@ const App = () => (
           <Route path="/entreprise" element={<Entreprise />} />
           <Route path="/portail-developpeur" element={<PortailDeveloppeur />} />
           <Route path="/service-commercial" element={<ServiceCommercial />} />
+          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/quotes" element={<QuoteManagement />} />
+          <Route path="/developer/bugs" element={<BugManagement />} />
+          <Route path="/developer/emails" element={<EmailManagement />} />
+          <Route path="/developer/errors" element={<SystemErrors />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

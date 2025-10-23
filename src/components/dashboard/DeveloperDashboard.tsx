@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Bug, Mail, AlertTriangle } from "lucide-react";
 import DashboardSidebar from "./DashboardSidebar";
+import { Link } from "react-router-dom";
 
 interface DeveloperDashboardProps {
   userName: string;
@@ -62,14 +64,55 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
           </Card>
         </div>
 
-        <Card>
-          <CardContent className="pt-6">
-            <h3 className="text-xl font-semibold mb-4">Gestion technique</h3>
-            <p className="text-muted-foreground">
-              Gestion des bugs, modification du site, gestion des emails, et résolution des erreurs système.
-            </p>
-          </CardContent>
-        </Card>
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card>
+            <CardContent className="pt-6">
+              <h3 className="text-xl font-semibold mb-4">Gestion des bugs</h3>
+              <p className="text-muted-foreground mb-4">
+                Suivez et résolvez les bugs signalés par les utilisateurs.
+              </p>
+              <Button asChild>
+                <Link to="/developer/bugs">Voir les bugs</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <h3 className="text-xl font-semibold mb-4">Gestion des emails</h3>
+              <p className="text-muted-foreground mb-4">
+                Gérez les emails de contact et les notifications système.
+              </p>
+              <Button asChild>
+                <Link to="/developer/emails">Voir les emails</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <h3 className="text-xl font-semibold mb-4">Erreurs système</h3>
+              <p className="text-muted-foreground mb-4">
+                Consultez les logs d'erreurs et les problèmes techniques.
+              </p>
+              <Button asChild>
+                <Link to="/developer/errors">Voir les erreurs</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <h3 className="text-xl font-semibold mb-4">Modification du site</h3>
+              <p className="text-muted-foreground mb-4">
+                Accédez aux outils de développement et de configuration.
+              </p>
+              <Button variant="outline">
+                Configuration avancée
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </main>
     </div>
   );
