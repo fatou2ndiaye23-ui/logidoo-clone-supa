@@ -7,8 +7,9 @@ const Header = () => {
     <header className="border-b bg-background">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-3">
             <img src={logo} alt="Teranga Logix" className="h-10 w-auto" />
+            <span className="text-xl font-bold text-primary">Teranga Logix</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">

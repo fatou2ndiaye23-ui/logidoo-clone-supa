@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plane, Ship, Truck, Package } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -61,7 +62,9 @@ const Produits = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full">En savoir plus</Button>
+                  <Button className="w-full" asChild>
+                    <Link to="/demande-devis">Demander un devis</Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}

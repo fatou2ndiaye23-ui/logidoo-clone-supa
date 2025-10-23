@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const ServiceCommercial = () => {
   const [formData, setFormData] = useState({
@@ -136,7 +137,7 @@ const ServiceCommercial = () => {
                     Obtenez une estimation immédiate pour votre expédition
                   </p>
                   <Button variant="secondary" className="w-full" asChild>
-                    <a href="/demande-devis">Demander un devis</a>
+                    <Link to="/demande-devis">Demander un devis</Link>
                   </Button>
                 </CardContent>
               </Card>

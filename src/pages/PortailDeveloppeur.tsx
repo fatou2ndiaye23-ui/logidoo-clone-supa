@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Code, Book, Key, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const features = [
   {
@@ -65,8 +66,12 @@ const PortailDeveloppeur = () => {
                 vos opérations logistiques directement depuis vos systèmes.
               </p>
               <div className="flex gap-4">
-                <Button>Obtenir une clé API</Button>
-                <Button variant="outline">Voir la documentation</Button>
+                <Button asChild>
+                  <Link to="/auth">Obtenir une clé API</Link>
+                </Button>
+                <Button variant="outline" asChild>
+                  <Link to="/service-commercial">Voir la documentation</Link>
+                </Button>
               </div>
             </CardContent>
           </Card>

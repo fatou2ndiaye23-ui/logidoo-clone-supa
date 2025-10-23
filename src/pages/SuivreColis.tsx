@@ -10,8 +10,9 @@ const SuivreColis = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
 
   const handleTrack = () => {
-    // Fonctionnalité à implémenter
-    console.log("Tracking:", trackingNumber);
+    if (trackingNumber.trim()) {
+      alert(`Recherche du colis: ${trackingNumber}\n\nFonctionnalité en cours de développement.`);
+    }
   };
 
   return (
