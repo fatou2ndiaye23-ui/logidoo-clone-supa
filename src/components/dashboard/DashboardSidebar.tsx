@@ -121,14 +121,14 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
             Utilisateur
           </p>
           <Link
-            to="/dashboard"
+            to="/profile"
             className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
           >
             <User className="h-4 w-4" />
             Mon Profil
           </Link>
           <Link
-            to="/dashboard"
+            to="/settings"
             className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
           >
             <Settings className="h-4 w-4" />
