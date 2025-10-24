@@ -27,28 +27,28 @@ interface DashboardSidebarProps {
 const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
   const clientMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
-    { icon: ShoppingCart, label: "Commandes", href: "/dashboard" },
-    { icon: Truck, label: "Livraisons", href: "/dashboard" },
-    { icon: Store, label: "Boutiques", href: "/dashboard" },
-    { icon: DollarSign, label: "Débours", href: "/dashboard" },
-    { icon: Warehouse, label: "Entrepôts", href: "/dashboard" },
-    { icon: MapPin, label: "Zones", href: "/dashboard" },
-    { icon: BookOpen, label: "Catalogues", href: "/dashboard" },
-    { icon: MessageSquare, label: "Réclamations", href: "/dashboard" },
-    { icon: Package, label: "Loads", href: "/dashboard" },
-    { icon: Tag, label: "Promotions", href: "/dashboard" },
+    { icon: ShoppingCart, label: "Commandes", href: "/client/commandes" },
+    { icon: Truck, label: "Livraisons", href: "/client/livraisons" },
+    { icon: Store, label: "Boutiques", href: "/client/boutiques" },
+    { icon: DollarSign, label: "Débours", href: "/client/debours" },
+    { icon: Warehouse, label: "Entrepôts", href: "/client/entrepots" },
+    { icon: MapPin, label: "Zones", href: "/client/zones" },
+    { icon: BookOpen, label: "Catalogues", href: "/client/catalogues" },
+    { icon: MessageSquare, label: "Réclamations", href: "/client/reclamations" },
+    { icon: Package, label: "Loads", href: "/client/loads" },
+    { icon: Tag, label: "Promotions", href: "/client/promotions" },
   ];
 
   const adminMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
-    { icon: Users, label: "Gestion utilisateurs", href: "/dashboard" },
-    { icon: Settings, label: "Configuration", href: "/dashboard" },
+    { icon: Users, label: "Gestion utilisateurs", href: "/admin/users" },
+    { icon: Settings, label: "Configuration", href: "/admin/configuration" },
   ];
 
   const developerMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
-    { icon: Bug, label: "Gestion des bugs", href: "/dashboard" },
-    { icon: Settings, label: "Configuration système", href: "/dashboard" },
+    { icon: Bug, label: "Gestion des bugs", href: "/developer/bugs" },
+    { icon: Settings, label: "Configuration système", href: "/developer/system-config" },
   ];
 
   let menuItems = clientMenuItems;

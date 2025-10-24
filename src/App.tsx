@@ -16,9 +16,21 @@ import ServiceCommercial from "./pages/ServiceCommercial";
 import NotFound from "./pages/NotFound";
 import UserManagement from "./pages/admin/UserManagement";
 import QuoteManagement from "./pages/admin/QuoteManagement";
+import Configuration from "./pages/admin/Configuration";
 import BugManagement from "./pages/developer/BugManagement";
 import EmailManagement from "./pages/developer/EmailManagement";
 import SystemErrors from "./pages/developer/SystemErrors";
+import SystemConfiguration from "./pages/developer/SystemConfiguration";
+import Commandes from "./pages/client/Commandes";
+import Livraisons from "./pages/client/Livraisons";
+import Boutiques from "./pages/client/Boutiques";
+import Debours from "./pages/client/Debours";
+import Entrepots from "./pages/client/Entrepots";
+import Zones from "./pages/client/Zones";
+import Catalogues from "./pages/client/Catalogues";
+import Reclamations from "./pages/client/Reclamations";
+import Loads from "./pages/client/Loads";
+import Promotions from "./pages/client/Promotions";
 
 const queryClient = new QueryClient();
 
@@ -41,9 +53,21 @@ const App = () => (
           <Route path="/service-commercial" element={<ServiceCommercial />} />
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/quotes" element={<QuoteManagement />} />
+          <Route path="/admin/configuration" element={<Configuration />} />
           <Route path="/developer/bugs" element={<BugManagement />} />
           <Route path="/developer/emails" element={<EmailManagement />} />
           <Route path="/developer/errors" element={<SystemErrors />} />
+          <Route path="/developer/system-config" element={<SystemConfiguration />} />
+          <Route path="/client/commandes" element={<Commandes />} />
+          <Route path="/client/livraisons" element={<Livraisons />} />
+          <Route path="/client/boutiques" element={<Boutiques />} />
+          <Route path="/client/debours" element={<Debours />} />
+          <Route path="/client/entrepots" element={<Entrepots />} />
+          <Route path="/client/zones" element={<Zones />} />
+          <Route path="/client/catalogues" element={<Catalogues />} />
+          <Route path="/client/reclamations" element={<Reclamations />} />
+          <Route path="/client/loads" element={<Loads />} />
+          <Route path="/client/promotions" element={<Promotions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
