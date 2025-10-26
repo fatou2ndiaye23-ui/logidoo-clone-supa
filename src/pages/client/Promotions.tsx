@@ -26,6 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const formSchema = z.object({
   title: z.string().min(1, "Le titre est requis"),
@@ -135,12 +136,13 @@ const Promotions = () => {
               Nouvelle promotion
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="max-h-[90vh]">
             <DialogHeader>
               <DialogTitle>Créer une nouvelle promotion</DialogTitle>
             </DialogHeader>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <ScrollArea className="max-h-[calc(90vh-120px)] pr-4">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                   control={form.control}
                   name="title"
@@ -219,9 +221,10 @@ const Promotions = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">Créer la promotion</Button>
-              </form>
-            </Form>
+                  <Button type="submit" className="w-full">Créer la promotion</Button>
+                </form>
+              </Form>
+            </ScrollArea>
           </DialogContent>
         </Dialog>
       </div>

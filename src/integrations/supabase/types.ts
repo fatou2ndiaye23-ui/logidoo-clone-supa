@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      bugs: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          description: string | null
+          id: string
+          priority: string
+          reported_by: string | null
+          resolved_at: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          priority?: string
+          reported_by?: string | null
+          resolved_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          priority?: string
+          reported_by?: string | null
+          resolved_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       catalogues: {
         Row: {
           category: string | null
@@ -367,6 +406,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      system_errors: {
+        Row: {
+          created_at: string
+          error_message: string
+          error_type: string
+          id: string
+          resolved_at: string | null
+          stack_trace: string | null
+          status: string
+          url: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message: string
+          error_type: string
+          id?: string
+          resolved_at?: string | null
+          stack_trace?: string | null
+          status?: string
+          url?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string
+          error_type?: string
+          id?: string
+          resolved_at?: string | null
+          stack_trace?: string | null
+          status?: string
+          url?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {

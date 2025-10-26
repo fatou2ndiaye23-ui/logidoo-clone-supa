@@ -17,6 +17,7 @@ import {
   LogOut,
   Users,
   Bug,
+  FileText,
 } from "lucide-react";
 
 interface DashboardSidebarProps {
@@ -27,6 +28,7 @@ interface DashboardSidebarProps {
 const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
   const clientMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
+    { icon: FileText, label: "Mes devis", href: "/client/mes-devis" },
     { icon: ShoppingCart, label: "Commandes", href: "/client/commandes" },
     { icon: Truck, label: "Livraisons", href: "/client/livraisons" },
     { icon: Store, label: "Boutiques", href: "/client/boutiques" },
@@ -41,6 +43,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
 
   const adminMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
+    { icon: FileText, label: "Gestion des devis", href: "/admin/quotes" },
     { icon: Users, label: "Gestion utilisateurs", href: "/admin/users" },
     { icon: Settings, label: "Configuration", href: "/admin/configuration" },
   ];
@@ -48,6 +51,8 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
   const developerMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
     { icon: Bug, label: "Gestion des bugs", href: "/developer/bugs" },
+    { icon: Users, label: "Gestion des utilisateurs", href: "/developer/emails" },
+    { icon: MessageSquare, label: "Erreurs système", href: "/developer/errors" },
     { icon: Settings, label: "Configuration système", href: "/developer/system-config" },
   ];
 
@@ -85,7 +90,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
             <p className="text-xs font-semibold text-muted-foreground mb-2 px-3">
               E-commerce
             </p>
-            {menuItems.slice(1, 11).map((item) => (
+            {menuItems.slice(1, 12).map((item) => (
               <Link
                 key={item.label}
                 to={item.href}

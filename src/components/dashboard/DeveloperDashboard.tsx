@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Bug, Mail, AlertTriangle } from "lucide-react";
 import DashboardSidebar from "./DashboardSidebar";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface DeveloperDashboardProps {
   userName: string;
@@ -10,6 +12,36 @@ interface DeveloperDashboardProps {
 }
 
 const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => {
+  const [stats, setStats] = useState({
+    activeBugs: 0,
+    unresolvedErrors: 0,
+  });
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const { count: bugsCount } = await supabase
+        .from("bugs")
+        .select("*", { count: "exact", head: true })
+        .neq("status", "resolved");
+
+      const { count: errorsCount } = await supabase
+        .from("system_errors")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "unresolved");
+
+      setStats({
+        activeBugs: bugsCount || 0,
+        unresolvedErrors: errorsCount || 0,
+      });
+    } catch (error) {
+      console.error("Erreur lors du chargement des stats:", error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-muted/30">
       <DashboardSidebar userRole="developer" onLogout={onLogout} />
@@ -28,7 +60,7 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
                   <Bug className="h-6 w-6 text-red-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">0</p>
+                  <p className="text-2xl font-bold">{stats.activeBugs}</p>
                   <p className="text-sm text-muted-foreground">Bugs actifs</p>
                 </div>
               </div>
@@ -42,8 +74,8 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
                   <Mail className="h-6 w-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">0</p>
-                  <p className="text-sm text-muted-foreground">Emails en attente</p>
+                  <p className="text-2xl font-bold">-</p>
+                  <p className="text-sm text-muted-foreground">Gestion des utilisateurs</p>
                 </div>
               </div>
             </CardContent>
@@ -56,7 +88,7 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
                   <AlertTriangle className="h-6 w-6 text-yellow-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">0</p>
+                  <p className="text-2xl font-bold">{stats.unresolvedErrors}</p>
                   <p className="text-sm text-muted-foreground">Erreurs système</p>
                 </div>
               </div>
@@ -79,12 +111,12 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
 
           <Card>
             <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-4">Gestion des emails</h3>
+              <h3 className="text-xl font-semibold mb-4">Gestion des utilisateurs</h3>
               <p className="text-muted-foreground mb-4">
-                Gérez les emails de contact et les notifications système.
+                Réinitialiser les mots de passe et gérer les accès utilisateurs.
               </p>
               <Button asChild>
-                <Link to="/developer/emails">Voir les emails</Link>
+                <Link to="/developer/emails">Gérer les utilisateurs</Link>
               </Button>
             </CardContent>
           </Card>
@@ -103,12 +135,12 @@ const DeveloperDashboard = ({ userName, onLogout }: DeveloperDashboardProps) => 
 
           <Card>
             <CardContent className="pt-6">
-              <h3 className="text-xl font-semibold mb-4">Modification du site</h3>
+              <h3 className="text-xl font-semibold mb-4">Configuration système</h3>
               <p className="text-muted-foreground mb-4">
-                Accédez aux outils de développement et de configuration.
+                Statistiques, maintenance et configuration avancée du système.
               </p>
-              <Button variant="outline">
-                Configuration avancée
+              <Button asChild variant="outline">
+                <Link to="/developer/system-config">Configuration avancée</Link>
               </Button>
             </CardContent>
           </Card>

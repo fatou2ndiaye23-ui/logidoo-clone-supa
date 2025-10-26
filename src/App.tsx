@@ -33,6 +33,7 @@ import Catalogues from "./pages/client/Catalogues";
 import Reclamations from "./pages/client/Reclamations";
 import Loads from "./pages/client/Loads";
 import Promotions from "./pages/client/Promotions";
+import MesDevis from "./pages/client/MesDevis";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
           <Route path="/client/reclamations" element={<Reclamations />} />
           <Route path="/client/loads" element={<Loads />} />
           <Route path="/client/promotions" element={<Promotions />} />
+          <Route path="/client/mes-devis" element={<MesDevis />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
