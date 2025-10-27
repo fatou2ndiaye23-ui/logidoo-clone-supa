@@ -127,8 +127,8 @@ const Commandes = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
-      <div className="mb-6 flex justify-between items-center">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
+      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -259,7 +259,8 @@ const Commandes = () => {
               Aucune commande trouvée. Créez votre première commande pour commencer.
             </p>
           ) : (
-            <Table>
+            <div className="overflow-x-auto">
+              <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Numéro</TableHead>
@@ -282,7 +283,8 @@ const Commandes = () => {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

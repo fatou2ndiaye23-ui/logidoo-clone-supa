@@ -114,8 +114,8 @@ const Boutiques = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
-      <div className="mb-6 flex justify-between items-center">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
+      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -220,7 +220,7 @@ const Boutiques = () => {
               Aucune boutique configurée. Créez votre première boutique pour commencer.
             </p>
           ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {shops.map((shop) => (
                 <Card key={shop.id}>
                   <CardHeader>

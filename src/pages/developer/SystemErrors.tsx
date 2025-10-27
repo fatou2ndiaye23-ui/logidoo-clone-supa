@@ -76,7 +76,7 @@ const SystemErrors = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
       <div className="mb-6">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
@@ -98,57 +98,59 @@ const SystemErrors = () => {
               Aucune erreur système détectée. Le système fonctionne correctement.
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Message</TableHead>
-                  <TableHead>URL</TableHead>
-                  <TableHead>Statut</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {errors.map((error) => (
-                  <TableRow key={error.id}>
-                    <TableCell>
-                      <Badge variant="outline">{error.error_type}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <div className="max-w-xs truncate" title={error.error_message}>
-                        {error.error_message}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {error.url ? (
-                        <span className="text-sm text-muted-foreground">{error.url}</span>
-                      ) : (
-                        "-"
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusBadgeVariant(error.status)}>
-                        {error.status === "resolved" ? "Résolu" : "Non résolu"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      {new Date(error.created_at).toLocaleDateString()}
-                    </TableCell>
-                    <TableCell>
-                      {error.status !== "resolved" && (
-                        <Button
-                          size="sm"
-                          onClick={() => markAsResolved(error.id)}
-                        >
-                          Résoudre
-                        </Button>
-                      )}
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Message</TableHead>
+                    <TableHead>URL</TableHead>
+                    <TableHead>Statut</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {errors.map((error) => (
+                    <TableRow key={error.id}>
+                      <TableCell>
+                        <Badge variant="outline">{error.error_type}</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <div className="max-w-xs truncate" title={error.error_message}>
+                          {error.error_message}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {error.url ? (
+                          <span className="text-sm text-muted-foreground">{error.url}</span>
+                        ) : (
+                          "-"
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusBadgeVariant(error.status)}>
+                          {error.status === "resolved" ? "Résolu" : "Non résolu"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        {new Date(error.created_at).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell>
+                        {error.status !== "resolved" && (
+                          <Button
+                            size="sm"
+                            onClick={() => markAsResolved(error.id)}
+                          >
+                            Résoudre
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

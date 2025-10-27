@@ -83,13 +83,13 @@ const ClientDashboard = ({ userName, onLogout }: ClientDashboardProps) => {
     <div className="flex min-h-screen bg-muted/30">
       <DashboardSidebar userRole="client" onLogout={onLogout} />
       
-      <main className="flex-1 p-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Tableau de bord client</h1>
+      <main className="flex-1 p-4 md:p-8 lg:ml-0">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">Tableau de bord client</h1>
           <p className="text-muted-foreground">Bienvenue, {userName}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
@@ -133,10 +133,10 @@ const ClientDashboard = ({ userName, onLogout }: ClientDashboardProps) => {
           </Card>
         </div>
 
-        <div className="bg-card rounded-lg p-6">
-          <div className="flex gap-4 mb-6 border-b">
+        <div className="bg-card rounded-lg p-4 md:p-6">
+          <div className="flex gap-4 mb-6 border-b overflow-x-auto">
             <button
-              className={`pb-3 px-4 font-medium transition-colors ${
+              className={`pb-3 px-4 font-medium transition-colors whitespace-nowrap ${
                 activeTab === "mes-devis"
                   ? "border-b-2 border-primary text-primary"
                   : "text-muted-foreground hover:text-foreground"
@@ -146,7 +146,7 @@ const ClientDashboard = ({ userName, onLogout }: ClientDashboardProps) => {
               Mes devis
             </button>
             <button
-              className={`pb-3 px-4 font-medium transition-colors ${
+              className={`pb-3 px-4 font-medium transition-colors whitespace-nowrap ${
                 activeTab === "mon-profil"
                   ? "border-b-2 border-primary text-primary"
                   : "text-muted-foreground hover:text-foreground"
@@ -178,37 +178,39 @@ const ClientDashboard = ({ userName, onLogout }: ClientDashboardProps) => {
                       <Link to="/demande-devis">Nouvelle demande</Link>
                     </Button>
                   </div>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Départ</TableHead>
-                        <TableHead>Destination</TableHead>
-                        <TableHead>Type</TableHead>
-                        <TableHead>Mode</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Statut</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {quotes.map((quote) => (
-                        <TableRow key={quote.id}>
-                          <TableCell>{quote.departure_location}</TableCell>
-                          <TableCell>{quote.destination_location}</TableCell>
-                          <TableCell>{quote.transport_type}</TableCell>
-                          <TableCell>{quote.transport_mode}</TableCell>
-                          <TableCell>
-                            {new Date(quote.shipment_date).toLocaleDateString("fr-FR")}
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant={getStatusBadgeVariant(quote.status)}>
-                              {quote.status === "pending" ? "En attente" : 
-                               quote.status === "approved" ? "Approuvé" : "Rejeté"}
-                            </Badge>
-                          </TableCell>
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Départ</TableHead>
+                          <TableHead>Destination</TableHead>
+                          <TableHead>Type</TableHead>
+                          <TableHead>Mode</TableHead>
+                          <TableHead>Date</TableHead>
+                          <TableHead>Statut</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        {quotes.map((quote) => (
+                          <TableRow key={quote.id}>
+                            <TableCell>{quote.departure_location}</TableCell>
+                            <TableCell>{quote.destination_location}</TableCell>
+                            <TableCell>{quote.transport_type}</TableCell>
+                            <TableCell>{quote.transport_mode}</TableCell>
+                            <TableCell>
+                              {new Date(quote.shipment_date).toLocaleDateString("fr-FR")}
+                            </TableCell>
+                            <TableCell>
+                              <Badge variant={getStatusBadgeVariant(quote.status)}>
+                                {quote.status === "pending" ? "En attente" : 
+                                 quote.status === "approved" ? "Approuvé" : "Rejeté"}
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
                 </>
               )}
             </div>

@@ -73,7 +73,7 @@ const QuoteManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
       <div className="mb-6">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
@@ -93,58 +93,60 @@ const QuoteManagement = () => {
           ) : quotes.length === 0 ? (
             <p className="text-muted-foreground">Aucun devis pour le moment</p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Départ</TableHead>
-                  <TableHead>Destination</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Mode</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Statut</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {quotes.map((quote) => (
-                  <TableRow key={quote.id}>
-                    <TableCell>{quote.departure_location}</TableCell>
-                    <TableCell>{quote.destination_location}</TableCell>
-                    <TableCell>{quote.transport_type}</TableCell>
-                    <TableCell>{quote.transport_mode}</TableCell>
-                    <TableCell>
-                      {new Date(quote.shipment_date).toLocaleDateString("fr-FR")}
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusBadgeVariant(quote.status)}>
-                        {quote.status === "pending" ? "En attente" : 
-                         quote.status === "approved" ? "Approuvé" : "Rejeté"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => updateQuoteStatus(quote.id, "approved")}
-                          disabled={quote.status === "approved"}
-                        >
-                          Approuver
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => updateQuoteStatus(quote.id, "rejected")}
-                          disabled={quote.status === "rejected"}
-                        >
-                          Rejeter
-                        </Button>
-                      </div>
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Départ</TableHead>
+                    <TableHead>Destination</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Mode</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Statut</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {quotes.map((quote) => (
+                    <TableRow key={quote.id}>
+                      <TableCell>{quote.departure_location}</TableCell>
+                      <TableCell>{quote.destination_location}</TableCell>
+                      <TableCell>{quote.transport_type}</TableCell>
+                      <TableCell>{quote.transport_mode}</TableCell>
+                      <TableCell>
+                        {new Date(quote.shipment_date).toLocaleDateString("fr-FR")}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusBadgeVariant(quote.status)}>
+                          {quote.status === "pending" ? "En attente" : 
+                           quote.status === "approved" ? "Approuvé" : "Rejeté"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateQuoteStatus(quote.id, "approved")}
+                            disabled={quote.status === "approved"}
+                          >
+                            Approuver
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateQuoteStatus(quote.id, "rejected")}
+                            disabled={quote.status === "rejected"}
+                          >
+                            Rejeter
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

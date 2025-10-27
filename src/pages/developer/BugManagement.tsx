@@ -167,8 +167,8 @@ const BugManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
-      <div className="mb-6 flex justify-between items-center">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
+      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -258,7 +258,8 @@ const BugManagement = () => {
               Aucun bug signalé pour le moment.
             </p>
           ) : (
-            <Table>
+            <div className="overflow-x-auto">
+              <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Titre</TableHead>
@@ -295,7 +296,7 @@ const BugManagement = () => {
                     </TableCell>
                     <TableCell>{new Date(bug.created_at).toLocaleDateString()}</TableCell>
                     <TableCell>
-                      <div className="flex gap-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
                         {bug.status === "open" && (
                           <Button
                             size="sm"
@@ -318,7 +319,8 @@ const BugManagement = () => {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

@@ -18,7 +18,11 @@ import {
   Users,
   Bug,
   FileText,
+  Menu,
+  X,
 } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from "react";
 
 interface DashboardSidebarProps {
   userRole: "client" | "admin" | "developer";
@@ -26,6 +30,8 @@ interface DashboardSidebarProps {
 }
 
 const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
+  const [open, setOpen] = useState(false);
+  
   const clientMenuItems = [
     { icon: LayoutDashboard, label: "Tableau de bord", href: "/dashboard" },
     { icon: FileText, label: "Mes devis", href: "/client/mes-devis" },
@@ -60,9 +66,9 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
   if (userRole === "admin") menuItems = adminMenuItems;
   if (userRole === "developer") menuItems = developerMenuItems;
 
-  return (
-    <aside className="w-64 bg-card border-r min-h-screen p-4">
-      <Link to="/" className="block mb-8">
+  const SidebarContent = () => (
+    <>
+      <Link to="/" className="block mb-8" onClick={() => setOpen(false)}>
         <h2 className="text-xl font-bold text-primary">Teranga Logix</h2>
       </Link>
 
@@ -78,6 +84,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
               key={item.label}
               to={item.href}
               className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
+              onClick={() => setOpen(false)}
             >
               <item.icon className="h-4 w-4" />
               {item.label}
@@ -95,6 +102,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
                 key={item.label}
                 to={item.href}
                 className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
+                onClick={() => setOpen(false)}
               >
                 <item.icon className="h-4 w-4" />
                 {item.label}
@@ -113,6 +121,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
                 key={item.label}
                 to={item.href}
                 className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
+                onClick={() => setOpen(false)}
               >
                 <item.icon className="h-4 w-4" />
                 {item.label}
@@ -128,6 +137,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
           <Link
             to="/profile"
             className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
+            onClick={() => setOpen(false)}
           >
             <User className="h-4 w-4" />
             Mon Profil
@@ -135,6 +145,7 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
           <Link
             to="/settings"
             className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent text-sm"
+            onClick={() => setOpen(false)}
           >
             <Settings className="h-4 w-4" />
             Paramètres
@@ -145,12 +156,38 @@ const DashboardSidebar = ({ userRole, onLogout }: DashboardSidebarProps) => {
       <Button
         variant="outline"
         className="w-full"
-        onClick={onLogout}
+        onClick={() => {
+          onLogout();
+          setOpen(false);
+        }}
       >
         <LogOut className="h-4 w-4 mr-2" />
         Se déconnecter
       </Button>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <div className="lg:hidden fixed top-4 left-4 z-50">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="sm">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64 p-4">
+            <SidebarContent />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:block w-64 bg-card border-r min-h-screen p-4">
+        <SidebarContent />
+      </aside>
+    </>
   );
 };
 

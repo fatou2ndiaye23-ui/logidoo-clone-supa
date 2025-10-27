@@ -42,13 +42,13 @@ const AdminDashboard = ({ userName, onLogout }: AdminDashboardProps) => {
     <div className="flex min-h-screen bg-muted/30">
       <DashboardSidebar userRole="admin" onLogout={onLogout} />
       
-      <main className="flex-1 p-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Tableau de bord Admin</h1>
+      <main className="flex-1 p-4 md:p-8 lg:ml-0">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">Tableau de bord Admin</h1>
           <p className="text-muted-foreground">Bienvenue, {userName}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
@@ -92,7 +92,7 @@ const AdminDashboard = ({ userName, onLogout }: AdminDashboardProps) => {
           </Card>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <Card>
             <CardContent className="pt-6">
               <h3 className="text-xl font-semibold mb-4">Gestion des utilisateurs</h3>

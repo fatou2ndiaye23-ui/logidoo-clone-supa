@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Configuration = () => {
   return (
-    <div className="min-h-screen bg-muted/30 p-8">
+    <div className="min-h-screen bg-muted/30 p-4 md:p-8">
       <div className="mb-6">
         <Link to="/dashboard">
           <Button variant="ghost" size="sm">
